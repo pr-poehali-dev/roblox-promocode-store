@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -10,6 +10,49 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const [selectedPromo, setSelectedPromo] = useState<typeof promoCodes[0] | null>(null);
+
+  const allBuyers = [
+    { name: 'Player_2847', amount: '2500 Robux', avatar: '🎮' },
+    { name: 'GamerPro123', amount: '5000 Robux', avatar: '⚡' },
+    { name: 'RobloxFan', amount: '1000 Robux', avatar: '🌟' },
+    { name: 'Builder_Pro', amount: '10000 Robux', avatar: '🏆' },
+    { name: 'MegaGamer', amount: '2500 Robux', avatar: '🔥' },
+    { name: 'CoolKid777', amount: '1000 Robux', avatar: '😎' },
+    { name: 'ProBuilder', amount: '5000 Robux', avatar: '🎯' },
+    { name: 'RbxMaster', amount: '2500 Robux', avatar: '💎' },
+    { name: 'GameLover', amount: '10000 Robux', avatar: '🚀' },
+    { name: 'TopPlayer', amount: '5000 Robux', avatar: '⭐' },
+  ];
+
+  const [recentBuyers, setRecentBuyers] = useState(() => {
+    return allBuyers.slice(0, 5).map((buyer, index) => ({
+      ...buyer,
+      time: `${2 + index * 3} минуты назад`,
+      id: Math.random()
+    }));
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRecentBuyers(prev => {
+        const randomBuyer = allBuyers[Math.floor(Math.random() * allBuyers.length)];
+        const newBuyer = {
+          ...randomBuyer,
+          time: 'только что',
+          id: Math.random()
+        };
+        
+        const updated = [newBuyer, ...prev.slice(0, 4)].map((buyer, index) => ({
+          ...buyer,
+          time: index === 0 ? 'только что' : `${2 + index * 3} минуты назад`
+        }));
+        
+        return updated;
+      });
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleBuyClick = (promo: typeof promoCodes[0]) => {
     setSelectedPromo(promo);
@@ -160,14 +203,8 @@ const Index = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {[
-                  { name: 'Player_2847', amount: '2500 Robux', time: '2 минуты назад', avatar: '🎮' },
-                  { name: 'GamerPro123', amount: '5000 Robux', time: '5 минут назад', avatar: '⚡' },
-                  { name: 'RobloxFan', amount: '1000 Robux', time: '8 минут назад', avatar: '🌟' },
-                  { name: 'Builder_Pro', amount: '10000 Robux', time: '12 минут назад', avatar: '🏆' },
-                  { name: 'MegaGamer', amount: '2500 Robux', time: '15 минут назад', avatar: '🔥' },
-                ].map((buyer, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 bg-secondary/10 rounded-lg hover:bg-secondary/20 transition-colors">
+                {recentBuyers.map((buyer) => (
+                  <div key={buyer.id} className="flex items-center justify-between p-3 bg-secondary/10 rounded-lg hover:bg-secondary/20 transition-all animate-fade-in">
                     <div className="flex items-center gap-3">
                       <Avatar className="w-10 h-10">
                         <AvatarFallback className="text-xl">{buyer.avatar}</AvatarFallback>
