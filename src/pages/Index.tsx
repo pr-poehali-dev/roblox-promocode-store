@@ -286,9 +286,14 @@ const Index = () => {
             </Button>
           </div>
           <div className="pt-4 border-t border-border/50">
-            <p className="text-sm text-muted-foreground">
-              Создатель: <span className="font-semibold text-foreground">John_Deo542</span>
-            </p>
+            <div className="flex flex-col gap-1">
+              <p className="text-sm text-muted-foreground">
+                Создатель: <span className="font-semibold text-foreground">John_Deo542</span>
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Помощник сайта: <span className="font-semibold text-foreground">Zona123900</span>
+              </p>
+            </div>
           </div>
         </div>
       </footer>
