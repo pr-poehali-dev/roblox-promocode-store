@@ -4,9 +4,17 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Icon from '@/components/ui/icon';
+import PaymentModal from '@/components/PaymentModal';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+  const [selectedPromo, setSelectedPromo] = useState<typeof promoCodes[0] | null>(null);
+
+  const handleBuyClick = (promo: typeof promoCodes[0]) => {
+    setSelectedPromo(promo);
+    setIsPaymentOpen(true);
+  };
 
   const promoCodes = [
     { id: 1, title: '1000 Robux', price: '599₽', discount: '-20%', popular: true, description: 'Игровая валюта для покупок' },
@@ -185,7 +193,10 @@ const Index = () => {
                   </ul>
                 </CardContent>
                 <CardFooter>
-                  <Button className="w-full text-lg font-bold py-6 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all group-hover:scale-105">
+                  <Button 
+                    onClick={() => handleBuyClick(promo)}
+                    className="w-full text-lg font-bold py-6 bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all group-hover:scale-105"
+                  >
                     <Icon name="ShoppingCart" className="mr-2" size={20} />
                     Купить
                   </Button>
@@ -268,6 +279,14 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {selectedPromo && (
+        <PaymentModal
+          isOpen={isPaymentOpen}
+          onClose={() => setIsPaymentOpen(false)}
+          promoCode={selectedPromo}
+        />
+      )}
     </div>
   );
 };
