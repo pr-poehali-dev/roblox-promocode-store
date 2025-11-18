@@ -286,10 +286,16 @@ const Index = () => {
             </Button>
           </div>
           <div className="pt-4 border-t border-border/50">
-            <div className="flex flex-col gap-1">
-              <p className="text-sm text-muted-foreground">
-                Создатель: <span className="font-semibold text-foreground">John_Deo542</span>
-              </p>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center justify-center gap-2">
+                <Avatar className="w-8 h-8 border-2 border-primary">
+                  <AvatarImage src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-5E7D8B42F3E7E21D4BD0AF32B51EEDA3-Png/150/150/AvatarHeadshot/Webp/noFilter" alt="John_Deo542" />
+                  <AvatarFallback className="bg-gradient-to-br from-primary to-secondary text-xs">JD</AvatarFallback>
+                </Avatar>
+                <p className="text-sm text-muted-foreground">
+                  Создатель: <span className="font-semibold text-foreground">John_Deo542</span>
+                </p>
+              </div>
               <p className="text-sm text-muted-foreground">
                 Главный помощник сайта: <span className="font-semibold text-primary">djeshehwbwb</span>
               </p>
