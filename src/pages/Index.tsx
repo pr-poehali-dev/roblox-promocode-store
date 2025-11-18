@@ -291,6 +291,9 @@ const Index = () => {
                 Создатель: <span className="font-semibold text-foreground">John_Deo542</span>
               </p>
               <p className="text-sm text-muted-foreground">
+                Главный помощник сайта: <span className="font-semibold text-primary">djeshehwbwb</span>
+              </p>
+              <p className="text-sm text-muted-foreground">
                 Помощник сайта: <span className="font-semibold text-foreground">Zona123900</span>
               </p>
             </div>
