@@ -148,6 +148,46 @@ const Index = () => {
         </div>
       </section>
 
+      <section id="buyers" className="py-12 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <Card className="border-2 border-primary/20 shadow-lg">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-2xl">
+                <Icon name="ShoppingBag" className="text-primary" size={28} />
+                Кто покупает коды
+              </CardTitle>
+              <CardDescription>Последние покупатели робуксов</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                {[
+                  { name: 'Player_2847', amount: '2500 Robux', time: '2 минуты назад', avatar: '🎮' },
+                  { name: 'GamerPro123', amount: '5000 Robux', time: '5 минут назад', avatar: '⚡' },
+                  { name: 'RobloxFan', amount: '1000 Robux', time: '8 минут назад', avatar: '🌟' },
+                  { name: 'Builder_Pro', amount: '10000 Robux', time: '12 минут назад', avatar: '🏆' },
+                  { name: 'MegaGamer', amount: '2500 Robux', time: '15 минут назад', avatar: '🔥' },
+                ].map((buyer, index) => (
+                  <div key={index} className="flex items-center justify-between p-3 bg-secondary/10 rounded-lg hover:bg-secondary/20 transition-colors">
+                    <div className="flex items-center gap-3">
+                      <Avatar className="w-10 h-10">
+                        <AvatarFallback className="text-xl">{buyer.avatar}</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="font-semibold">{buyer.name}</p>
+                        <p className="text-sm text-muted-foreground">{buyer.time}</p>
+                      </div>
+                    </div>
+                    <Badge className="bg-gradient-to-r from-primary to-secondary">
+                      {buyer.amount}
+                    </Badge>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       <section id="promocodes" className="py-20 px-4 bg-card/30">
         <div className="container mx-auto">
           <div className="text-center mb-12">
