@@ -274,7 +274,7 @@ const Index = () => {
             <span className="text-xl font-black">ROBLOX STORE</span>
           </div>
           <p className="text-muted-foreground mb-4">Официальный магазин промокодов Roblox</p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex gap-4 justify-center mb-6">
             <Button variant="ghost" size="icon">
               <Icon name="MessageCircle" size={20} />
             </Button>
@@ -284,6 +284,11 @@ const Index = () => {
             <Button variant="ghost" size="icon">
               <Icon name="Phone" size={20} />
             </Button>
+          </div>
+          <div className="pt-4 border-t border-border/50">
+            <p className="text-sm text-muted-foreground">
+              Создатель: <span className="font-semibold text-foreground">John_Deo542</span>
+            </p>
           </div>
         </div>
       </footer>
